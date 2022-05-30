@@ -1,10 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ProjetoAPIEscola.Models
 {
     public class Aluno
     {
-        public int Id { get; set; }
-        public string? RA { get; set; }
-        public string? Nome { get; set; }
+        [Key]
+        public int idAluno { get; set; }
+        public string? ra { get; set; }
+        public string? nomeAluno { get; set; }
         public int codCurso { get; set; }
     }
 }

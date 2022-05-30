@@ -10,25 +10,25 @@ namespace ProjetoAPIEscola.Controllers
     [Route("api/[controller]")]
     [ApiController]
     
-    public class AlunoController : ControllerBase
+    public class CursoController : ControllerBase
     {
         private EscolaContext _context;
-        public AlunoController(EscolaContext context)
+        public CursoController(EscolaContext context)
         {
             _context = context;
         }
         [HttpGet]
-        public ActionResult<List<Aluno>> GetAll()
+        public ActionResult<List<Curso>> GetAll()
         {
-            return _context.Aluno.ToList();
+            return _context.Curso.ToList();
         }
 
-        [HttpGet("{AlunoidAluno}")]
-        public ActionResult<List<Aluno>> Get(int AlunoidAluno)
+        [HttpGet("{CursoidCurso}")]
+        public ActionResult<List<Curso>> Get(int CursoidCurso)
         {
             try
             {
-                var result = _context.Aluno.Find(AlunoidAluno);
+                var result = _context.Curso.Find(CursoidCurso);
                 if (result == null)
                 {
                     return NotFound();
@@ -42,15 +42,15 @@ namespace ProjetoAPIEscola.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> post(Aluno model)
+        public async Task<ActionResult> post(Curso model)
         {
             try
             {
-                _context.Aluno.Add(model);
+                _context.Curso.Add(model);
                 if (await _context.SaveChangesAsync() == 1)
                 {
                     //return Ok();
-                    return Created($"/api/aluno/{model.ra}", model);
+                    return Created($"/api/Curso/{model.codigo}", model);
                 }
             }
             catch
@@ -62,19 +62,19 @@ namespace ProjetoAPIEscola.Controllers
 
         }
 
-        [HttpDelete("{AlunoidAluno}")]
-        public async Task<ActionResult> delete(int AlunoidAluno)
+        [HttpDelete("{CursoidCurso}")]
+        public async Task<ActionResult> delete(int CursoidCurso)
         {
             try
             {
-                //verifica se existe aluno a ser excluído
-                var aluno = await _context.Aluno.FindAsync(AlunoidAluno);
-                if (aluno == null)
+                //verifica se existe Curso a ser excluído
+                var Curso = await _context.Curso.FindAsync(CursoidCurso);
+                if (Curso == null)
                 {
                     //método do EF
                     return NotFound();
                 }
-                _context.Remove(aluno);
+                _context.Remove(Curso);
                 await _context.SaveChangesAsync();
                 return NoContent();
             }
@@ -84,22 +84,21 @@ namespace ProjetoAPIEscola.Controllers
             }
         }
 
-        [HttpPut("{AlunoidAluno}")]
-        public async Task<IActionResult> put(int AlunoidAluno, Aluno dadosAlunoAlt)
+        [HttpPut("{CursoidCurso}")]
+        public async Task<IActionResult> put(int CursoidCurso, Curso dadosCursoAlt)
         {
             try
             {
-                //verifica se existe aluno a ser alterado
-                var result = await _context.Aluno.FindAsync(AlunoidAluno);
-                if (AlunoidAluno != result.idAluno)
+                //verifica se existe Curso a ser altecodigodo
+                var result = await _context.Curso.FindAsync(CursoidCurso);
+                if (CursoidCurso != result.idCurso)
                 {
                     return BadRequest();
                 }
-                result.ra = dadosAlunoAlt.ra;
-                result.nomeAluno = dadosAlunoAlt.nomeAluno;
-                result.codCurso = dadosAlunoAlt.codCurso;
+                result.codigo = dadosCursoAlt.codigo;
+                result.nomeCurso = dadosCursoAlt.nomeCurso;
                 await _context.SaveChangesAsync();
-                return Created($"/api/aluno/{dadosAlunoAlt.ra}", dadosAlunoAlt);
+                return Created($"/api/Curso/{dadosCursoAlt.codigo}", dadosCursoAlt);
             }
             catch
             {
