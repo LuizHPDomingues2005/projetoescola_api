@@ -80,7 +80,7 @@ namespace ProjetoAPIEscola.Controllers
             }
             catch
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Falhano acesso ao banco de dados.");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha no acesso ao banco de dados.");
             }
         }
 

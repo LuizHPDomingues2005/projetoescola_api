@@ -1963,23 +1963,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Luiz\\.nuget\\packages\\": {},
+    "C:\\Users\\u21248\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Luiz\\Backup Arquivos\\Documentos\\ProjetoAPIEscola\\ProjetoAPIEscola.csproj",
+      "projectUniqueName": "C:\\Users\\u21248\\Documents\\Luiz\\DI 3\\ProjetoEscola_API\\projetoescola_api\\ProjetoAPIEscola.csproj",
       "projectName": "ProjetoAPIEscola",
-      "projectPath": "D:\\Luiz\\Backup Arquivos\\Documentos\\ProjetoAPIEscola\\ProjetoAPIEscola.csproj",
-      "packagesPath": "C:\\Users\\Luiz\\.nuget\\packages\\",
-      "outputPath": "D:\\Luiz\\Backup Arquivos\\Documentos\\ProjetoAPIEscola\\obj\\",
+      "projectPath": "C:\\Users\\u21248\\Documents\\Luiz\\DI 3\\ProjetoEscola_API\\projetoescola_api\\ProjetoAPIEscola.csproj",
+      "packagesPath": "C:\\Users\\u21248\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\u21248\\Documents\\Luiz\\DI 3\\ProjetoEscola_API\\projetoescola_api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Luiz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\u21248\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2033,7 +2033,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

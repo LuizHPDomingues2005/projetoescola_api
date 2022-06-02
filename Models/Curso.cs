@@ -4,6 +4,9 @@ namespace ProjetoAPIEscola.Models
 {
     public class Curso
     {
+
+        // declaramos as variáveis da classe Curso
+
         [Key]
 
         public int idCurso {get; set;}

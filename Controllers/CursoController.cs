@@ -12,7 +12,7 @@ namespace ProjetoAPIEscola.Controllers
     
     public class CursoController : ControllerBase
     {
-        private EscolaContext _context;
+        private EscolaContext _context; // definimos o contexo que usaremos nesse controlador
         public CursoController(EscolaContext context)
         {
             _context = context;
@@ -20,14 +20,17 @@ namespace ProjetoAPIEscola.Controllers
         [HttpGet]
         public ActionResult<List<Curso>> GetAll()
         {
-            return _context.Curso.ToList();
+            return _context.Curso.ToList(); // dados serão resgatados em formato de lista
         }
 
         [HttpGet("{CursoidCurso}")]
         public ActionResult<List<Curso>> Get(int CursoidCurso)
         {
+
             try
             {
+                // criamos a variável result, que retornará o idCurso,
+                // caso result seja nulo, ou seja, idCurso é nulo então não foi encontrado
                 var result = _context.Curso.Find(CursoidCurso);
                 if (result == null)
                 {
