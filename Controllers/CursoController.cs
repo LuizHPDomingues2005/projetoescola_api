@@ -49,6 +49,13 @@ namespace ProjetoAPIEscola.Controllers
         {
             try
             {
+                // metodo de cadastrar curso
+
+                // adicionamos a tabela Curso um novo dado com
+                // o contexto que criamos
+
+                // os dados do contexto sao pegos no formulario, no front-end
+                
                 _context.Curso.Add(model);
                 if (await _context.SaveChangesAsync() == 1)
                 {
@@ -71,12 +78,15 @@ namespace ProjetoAPIEscola.Controllers
             try
             {
                 //verifica se existe Curso a ser excluído
+                
+                
                 var Curso = await _context.Curso.FindAsync(CursoidCurso);
                 if (Curso == null)
                 {
                     //método do EF
                     return NotFound();
                 }
+                // se o Curso existir, é removido da tabela Curso
                 _context.Remove(Curso);
                 await _context.SaveChangesAsync();
                 return NoContent();
@@ -92,12 +102,16 @@ namespace ProjetoAPIEscola.Controllers
         {
             try
             {
-                //verifica se existe Curso a ser altecodigodo
+                //verifica se existe Curso a ser alterado existe
+
+
                 var result = await _context.Curso.FindAsync(CursoidCurso);
                 if (CursoidCurso != result.idCurso)
                 {
                     return BadRequest();
                 }
+                // se existir, os dados são capturados no front-end e passados
+                // para o método de alteração
                 result.codigo = dadosCursoAlt.codigo;
                 result.nomeCurso = dadosCursoAlt.nomeCurso;
                 await _context.SaveChangesAsync();
