@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace ProjetoAPIEscola.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     
     public class AlunoController : ControllerBase
@@ -23,12 +23,32 @@ namespace ProjetoAPIEscola.Controllers
             return _context.Aluno.ToList();
         }
 
+        [ActionName("AlunoId")]
         [HttpGet("{AlunoidAluno}")]
-        public ActionResult<List<Aluno>> Get(int AlunoidAluno)
+        public ActionResult<List<Aluno>> GetAlunoId(int AlunoidAluno)
         {
             try
             {
                 var result = _context.Aluno.Find(AlunoidAluno);
+                if (result == null)
+                {
+                    return NotFound();
+                }
+                return Ok(result);
+            }
+            catch
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha no acesso ao banco de dados.");
+            }
+        }
+
+        [ActionName("alunoNome")]
+        [HttpGet("{alunoNome}")]
+        public ActionResult<List<Aluno>> GetAlunoNome(string alunoNome)
+        {
+            try
+            {
+                var result = _context.Aluno.Where(a => a.nomeAluno == alunoNome);
                 if (result == null)
                 {
                     return NotFound();

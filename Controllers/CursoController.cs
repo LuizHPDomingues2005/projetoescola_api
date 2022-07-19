@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace ProjetoAPIEscola.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[Action]")]
     [ApiController]
-    
+
     public class CursoController : ControllerBase
     {
         private EscolaContext _context; // definimos o contexo que usaremos nesse controlador
@@ -23,15 +23,32 @@ namespace ProjetoAPIEscola.Controllers
             return _context.Curso.ToList(); // dados serão resgatados em formato de lista
         }
 
+        [ActionName("CursoidCurso")]
         [HttpGet("{CursoidCurso}")]
-        public ActionResult<List<Curso>> Get(int CursoidCurso)
+        public ActionResult<List<Curso>> GetIdCurso(int CursoidCurso)
         {
-
             try
             {
-                // criamos a variável result, que retornará o idCurso,
-                // caso result seja nulo, ou seja, idCurso é nulo então não foi encontrado
                 var result = _context.Curso.Find(CursoidCurso);
+                if (result == null)
+                {
+                    return NotFound();
+                }
+                return Ok(result);
+            }
+            catch
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha no acesso ao banco de dados.");
+            }
+        }
+
+        [ActionName("NomeCurso")]
+        [HttpGet("{NomeCurso}")]
+        public ActionResult<List<Curso>> GetCursoNome(string NomeCurso)
+        {
+            try
+            {
+                var result = _context.Curso.Where(c => c.nomeCurso == NomeCurso);
                 if (result == null)
                 {
                     return NotFound();
@@ -55,7 +72,7 @@ namespace ProjetoAPIEscola.Controllers
                 // o contexto que criamos
 
                 // os dados do contexto sao pegos no formulario, no front-end
-                
+
                 _context.Curso.Add(model);
                 if (await _context.SaveChangesAsync() == 1)
                 {
@@ -78,8 +95,8 @@ namespace ProjetoAPIEscola.Controllers
             try
             {
                 //verifica se existe Curso a ser excluído
-                
-                
+
+
                 var Curso = await _context.Curso.FindAsync(CursoidCurso);
                 if (Curso == null)
                 {
